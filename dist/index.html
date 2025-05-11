@@ -1,12 +1,39 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./style.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Titans Weather App</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
+  <h2 class="text-2xl">Weather Now</h2>
+
+  <input id="city" placeholder="Enter city name" class="px-4 py-2 border border-gray-300 rounded-2xl" />
+
+  <button onclick="getWeather()" class="px-3 py-1 border border-gray-300 rounded-2xl">
+    Get Weather
+  </button>
+
+  <p id="result"></p>
+
+  <script>
+    function getWeather() {
+    let city = document.getElementById("city").value;
+    let apiKey = "42ef5c5b16905a9e3c2527995eda378c";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   
-  </h1>
+    fetch(url)
+        .then(function (response) {
+            response.json().then(function (data) {
+                let temp = data.main.temp;
+                let description = data.weather[0].description;
+                document.getElementById("result").innerText = `Temp: ${temp}°C, ${description}`;
+            });
+        });
+  }
+  </script>
 </body>
+
 </html>
