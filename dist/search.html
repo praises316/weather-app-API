@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Titans Weather App</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <h2 class="text-2xl">Weather Now</h2>
+
+    <input
+      id="city"
+      placeholder="Enter city name"
+      class="px-4 py-2 border border-gray-300 rounded-2xl"
+    />
+
+    <button
+      onclick="getWeather()"
+      class="px-3 py-1 border border-gray-300 rounded-2xl"
+    >
+      Get Weather
+    </button>
+
+    <p id="result"></p>
+
+    <script src="./search.js"></script>
+  </body>
+</html>
+
+
