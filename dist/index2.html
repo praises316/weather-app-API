@@ -1,95 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Titans Weather App</title>
-  <link rel="stylesheet" href="./style.css" />
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Weather App </title>
 
+    <link rel="stylesheet" href="./style.css">
+</head>
 <body>
 
-  <!-- Nav section -->
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Search</a>
-    <a href="#">Profile</a>
-    <a href="#">Settings</a>
-  </nav>
+    <section class="">
+        <div class="search">
+            <input type="text" name="" id="" placeholder="Enter your city">
 
-  <!-- Header Section -->
-  <header>
-    <div>
-      <div>Logo</div>
-      <button>Menu</button>
-    </div>
-  </header>
+            <button><img src="./images/search-loaction-svgrepo-com.svg" alt="" id="" class="w-10"></button>
+        </div>
 
-  <!-- Main Content Area -->
-  <main>
-    <section>
-      <h1>Welcome</h1>
-      <p>This is a simple mobile-responsive structure</p>
-      <button>Call to Action</button>
+        <div class="">
+            <img src="./images/weather-sunny-and-cloudy-material-svgrepo-com.svg" class="w-44" alt="" id="weather-icon">
+
+            <h1 class="temp"> 22</h1>
+            <h1 class="city"> New York </h1>
+        </div>
+
+        <div class="flex items-center mt-20 gap-10">
+            <div class="">
+                <img src="" alt="" class="">
+                <div class="">
+                    <p class="humidity"> 50% </p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="">
+                <img src="" alt="" class="">
+                <div class="">
+                    <p class="wind"> 15km/h</p>
+                    <p>Wind speed</p>
+                </div>
+            </div>
+        </div>
     </section>
+    
+    <script>
 
-    <section>
-      <h2>Features</h2>
-      <div>
-        <h3>Feature 1</h3>
-        <p>Description of feature</p>
-      </div>
-      <div>
-        <h3>Feature 2</h3>
-        <p>Description of feature</p>
-      </div>
-    </section>
+        const apiKey = "42ef5c5b16905a9e3c2527995eda378c"
+        const apiURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
 
-    <section>
-      <h2>News</h2>
-      <div>
-        <h3>Update 1</h3>
-        <p>Latest news item</p>
-      </div>
-    </section>
+        const searchBox = document.querySelector(".search input")
+        const searchBtn = document.querySelector(".search button")
 
-    <!-- Weather Section -->
-    <section>
-      <h2 class="text-2xl">Weather Now</h2>
+        async function checkWeather(city) {
+            const response = await fetch(apiURL + city + `&appid=${apiKey}`);
+            var data = await response.json()
 
-      <input id="city" placeholder="Enter city name" class="px-4 py-2 border border-gray-300 rounded-2xl" />
+            console.log(data);
 
-      <button onclick="getWeather()" class="px-3 py-1 border border-gray-300 rounded-2xl">
-        Get Weather
-      </button>
+            document.querySelector(".city").innerHTML = data.name
+            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + ".c"
+            document.querySelector(".humidity").innerHTML = data.main.humidity + "%"
+            document.querySelector(".wind").innerHTML = data.wind.speed + "km/h"
+            
+        }
 
-      <p id="result"></p>
-    </section>
-  </main>
+        searchBtn.addEventListener("click", () => {
+            checkWeather(searchBox.value)
 
-  <script>
-    function getWeather() {
-      let city = document.getElementById("city").value;
-      let apiKey = "42ef5c5b16905a9e3c2527995eda378c";
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-      fetch(url)
-        .then(function (response) {
-          return response.json();
         })
-        .then(function (data) {
-          let temp = data.main.temp;
-          let description = data.weather[0].description;
-          document.getElementById("result").innerText = `Temp: ${temp}°C, ${description}`;
-        })
-        .catch(function (error) {
-          document.getElementById("result").innerText = "Could not fetch weather data.";
-          console.error("Error fetching weather:", error);
-        });
-    }
-  </script>
+
+
+    </script>
+    
+
 
 </body>
-
 </html>
