@@ -16,7 +16,7 @@
       <input 
         id="search-city" 
         type="text" 
-        placeholder="Enter your city" 
+        placehimagesolder="Enter your city" 
         class="flex-1 px-4 py-2 border border-gray-300 rounded-2xl"
       />
       <button id="search-btn" class="px-3 py-2 border border-gray-300 rounded-2xl text-white bg-[#313453] hover:bg-[#3a3e6a]">
@@ -71,16 +71,16 @@
         humidityElement.textContent = data.main.humidity + "%";
         windElement.textContent = data.wind.speed + "km/h";
 
-        const condition = data.weather[0].main.toLowerCase();
-        if (condition.includes("cloud")) {
-          weatherIcon.src = "./images/cloudy.svg";
-        } else if (condition.includes("rain")) {
-          weatherIcon.src = "./images/rain.svg";
-        } else if (condition.includes("clear")) {
-          weatherIcon.src = "./images/sun.svg";
-        } else {
-          weatherIcon.src = "./images/weather-sunny-and-cloudy-material-svgrepo-com.svg";
-        }
+        // const condition = data.weather[0].main.toLowerCase();
+        // if (condition.includes("cloud")) {
+        //   weatherIcon.src = "./images/cloudy.svg";
+        // } else if (condition.includes("rain")) {
+        //   weatherIcon.src = "./images/rain.svg";
+        // } else if (condition.includes("clear")) {
+        //   weatherIcon.src = "./images/sun.svg";
+        // } else {
+        //   weatherIcon.src = "./images/weather-sunny-and-cloudy-material-svgrepo-com.svg";
+        // }
       } catch (err) {
         alert(err.message);
       }
