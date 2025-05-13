@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,92 +9,108 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 
-<body class="bg-[#d7d9ff]">
-  <section class="bg-[#16193c] p-6 rounded-2xl mt-8 max-w-md w-full mx-auto space-y-6 shadow-lg">
+<body class="bg-no-repeat bg-cover" style="background-image: url(./images/bg-video.mp4);">
 
-    <!-- Search Bar -->
-    <div class="flex items-center gap-4 flex-wrap">
-      <input 
-        id="search-city" 
-        type="text" 
-        placehimagesolder="Enter your city" 
-        class="flex-1 px-4 py-2 border border-gray-300 rounded-2xl"
-      />
-      <button id="search-btn" class="px-3 py-2 border border-gray-300 rounded-2xl text-white bg-[#313453] hover:bg-[#3a3e6a]">
-        <img src="./images/search-loaction-svgrepo-com.svg" alt="Search" class="w-6 inline" />
-      </button>
-    </div>
+  <body class="bg-[#d7d9ff]">
 
-    <!-- Weather Display -->
-    <div class="text-center">
-      <img id="weather-icon" src="./images/weather-sunny-and-cloudy-material-svgrepo-com.svg" alt="Weather Icon" class="w-40 mx-auto" />
-      <h1 class="temp text-white font-bold text-4xl mt-2">22°C</h1>
-      <h1 class="city text-white text-xl">New York</h1>
-    </div>
+    <!-- 🎥 Background video -->
+    <video autoplay muted loop playsinline id="bgVideo" class="fixed top-0 left-0 w-full h-full object-cover z-[-1]">
+      <source src="./images/bg-video.mp4" type="video/mp4" />
 
-    <!-- Extra Info -->
-    <div class="flex justify-around mt-10 text-white">
-      <div class="text-center">
-        <img src="./images/WhatsApp Image 2025-05-11 at 17.57.12.jpeg" alt="Humidity Icon" class="w-10 mx-auto mb-1" />
-        <p class="humidity text-lg font-bold">50%</p>
-        <p class="text-sm">Humidity</p>
+    </video>
+    <section class="bg-[#16193c] p-6 rounded-2xl mt-8 max-w-md w-full mx-auto space-y-6 shadow-lg">
+
+      <!-- Search Bar -->
+      <div class="flex items-center gap-4 flex-wrap">
+        <input id="search-city" type="text" placeholder="Enter your city"
+          class="flex-1 px-4 py-2 border border-gray-300 rounded-2xl" />
+        <button id="search-btn"
+          class="px-3 py-2 border border-gray-300 rounded-2xl text-white bg-[#313453] hover:bg-[#3a3e6a]">
+          <img src="./images/search-loaction-svgrepo-com.svg" alt="Search" class="w-6 inline" />
+        </button>
       </div>
-      <div class="text-center">
-        <img src="./images/WhatsApp Image 2025-05-11 at 17.56.49.jpeg" alt="Wind Icon" class="w-10 mx-auto mb-1" />
-        <p class="wind text-lg font-bold">15km/h</p>
-        <p class="text-sm">Wind</p>
-      </div>
-    </div>
 
-  </section>
+      <!-- Weather Display -->
 
-  <script>
-    const apiKey = "42ef5c5b16905a9e3c2527995eda378c";
-    const apiURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+      <body class="bg-[#d7d9ff]">
 
-    const searchBox = document.getElementById("search-city");
-    const searchBtn = document.getElementById("search-btn");
+        <!-- 🎥 Background video -->
+        <video autoplay muted loop playsinline id="bgVideo"
+          class="fixed top-0 left-0 w-full h-full object-cover z-[-1]">
+          <source src="/dist/assets/2935032-sd_640_360_30fps.mp4" type="video/mp4" />
 
-    const tempElement = document.querySelector(".temp");
-    const cityElement = document.querySelector(".city");
-    const humidityElement = document.querySelector(".humidity");
-    const windElement = document.querySelector(".wind");
-    const weatherIcon = document.getElementById("weather-icon");
+        </video>
+        <div class="text-center">
+          <img id="weather-icon" src="./images/weather-sunny-and-cloudy-material.svg" alt="Weather Icon"
+            class="w-40 mx-auto" />
+          <h1 class="temp text-white font-bold text-4xl mt-2">22°C</h1>
+          <h1 class="city text-white text-xl">New York</h1>
+        </div>
 
-    async function checkWeather(city) {
-      try {
-        const response = await fetch(apiURL + city + `&appid=${apiKey}`);
-        if (!response.ok) throw new Error("City not found!");
-        
-        const data = await response.json();
-        cityElement.textContent = data.name;
-        tempElement.textContent = Math.round(data.main.temp) + "°C";
-        humidityElement.textContent = data.main.humidity + "%";
-        windElement.textContent = data.wind.speed + "km/h";
+        <!-- Extra Info -->
+        <div class="flex justify-around mt-10 text-white">
+          <div class="text-center">
+            <img src="./images/humidity-air-conditining-ac.svg" alt="Humidity Icon" class="w-10 mx-auto mb-1" />
+            <p class="humidity text-lg font-bold">50%</p>
+            <p class="text-sm">Humidity</p>
+          </div>
+          <div class="text-center">
+            <img src="./images/wind-svgrepo-com.svg" alt="Wind Icon" class="w-10 mx-auto mb-1" />
+            <p class="wind text-lg font-bold">15km/h</p>
+            <p class="text-sm">Wind</p>
+          </div>
+        </div>
 
-        // const condition = data.weather[0].main.toLowerCase();
-        // if (condition.includes("cloud")) {
-        //   weatherIcon.src = "./images/cloudy.svg";
-        // } else if (condition.includes("rain")) {
-        //   weatherIcon.src = "./images/rain.svg";
-        // } else if (condition.includes("clear")) {
-        //   weatherIcon.src = "./images/sun.svg";
-        // } else {
-        //   weatherIcon.src = "./images/weather-sunny-and-cloudy-material-svgrepo-com.svg";
-        // }
-      } catch (err) {
-        alert(err.message);
+    </section>
+
+    <script>
+      const apiKey = "42ef5c5b16905a9e3c2527995eda378c";
+      const apiURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+      const searchBox = document.getElementById("search-city");
+      const searchBtn = document.getElementById("search-btn");
+
+      const tempElement = document.querySelector(".temp");
+      const cityElement = document.querySelector(".city");
+      const humidityElement = document.querySelector(".humidity");
+      const windElement = document.querySelector(".wind");
+      const weatherIcon = document.getElementById("weather-icon");
+
+      async function checkWeather(city) {
+        try {
+          const response = await fetch(apiURL + city + `&appid=${apiKey}`);
+          if (!response.ok) throw new Error("City not found!");
+
+          const data = await response.json();
+          cityElement.textContent = data.name;
+          tempElement.textContent = Math.round(data.main.temp) + "°C";
+          humidityElement.textContent = data.main.humidity + "%";
+          windElement.textContent = data.wind.speed + "km/h";
+
+          // const condition = data.weather[0].main.toLowerCase();
+          // if (condition.includes("cloud")) {
+          //   weatherIcon.src = "./images/cloudy.svg";
+          // } else if (condition.includes("rain")) {
+          //   weatherIcon.src = "./images/rain.svg";
+          // } else if (condition.includes("clear")) {
+          //   weatherIcon.src = "./images/sun.svg";
+          // } else {
+          //   weatherIcon.src = "./images/weather-sunny-and-cloudy-material-svgrepo-com.svg";
+          // }
+        } catch (err) {
+          alert(err.message);
+        }
       }
-    }
 
-    searchBtn.addEventListener("click", () => {
-      const city = searchBox.value.trim();
-      if (city) {
-        checkWeather(city);
-      } else {
-        alert("Please enter a city name.");
-      }
-    });
-  </script>
-</body>
+      searchBtn.addEventListener("click", () => {
+        const city = searchBox.value.trim();
+        if (city) {
+          checkWeather(city);
+        } else {
+          alert("Please enter a city name.");
+        }
+      });
+    </script>
+  </body>
+
 </html>
